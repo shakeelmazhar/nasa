@@ -1,3 +1,4 @@
+// This is component is being used for generalized colors
 const colors = {
   black: '#000000',
   white: '#FFFFFF',
@@ -7,7 +8,9 @@ const colors = {
   boldBorderColor:'#ECECEC',
   green:"#338739",
   lightGreen:"#DDEFDC",
-  moreLightGray: '#F3F3F3'
+  moreLightGray: '#F3F3F3',
+  limeYellow: "#f5b941",
+  skyBlue: "#9cc8e3"
 };
 
 export default colors;

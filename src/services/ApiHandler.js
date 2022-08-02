@@ -1,12 +1,15 @@
 import axios from "axios";
 import { apiHeaders } from "../constants/ApiConstants";
 
-export const apiRequest = async (path, method, params) => {
+
+// Generalized API calling method
+export const apiRequest = async ({path, method, params, auth_token}) => {
   return new Promise(async (resolve, reject) => {
     options = {
       url: path,
       headers: {
         "Content-Type": apiHeaders.application_json,
+        ...(auth_token && {'Authorization': auth_token})
       },
       method: method,
       timeout: apiHeaders.timeOut,
@@ -15,8 +18,8 @@ export const apiRequest = async (path, method, params) => {
 
     axios(options)
       .then((response) => {
-        if (response) {
-          resolve(response);
+        if (response?.status) {
+          resolve(response?.data);
         } else {
           reject(response);
         }

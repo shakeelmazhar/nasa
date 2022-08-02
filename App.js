@@ -7,11 +7,15 @@
  */
 
 import React from "react";
+import { SafeAreaView } from "react-native";
+import { Loader } from "./src/components/common/Common";
+import { constants } from "./src/constants/Constants";
 import NavigationStack from "./src/navigations/NavigationStack";
 
 const App = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <Loader ref={(refs) => constants.loaderRef = refs} />
       <NavigationStack />
     </SafeAreaView>
   );
