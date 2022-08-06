@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         width: dimensions.width(100),
         height: dimensions.height(100),
         marginVertical: dimensions.width(4),
+        resizeMode: "contain"
     },
 
     //// Home page movies grid stles 
