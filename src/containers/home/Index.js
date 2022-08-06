@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { constants } from "../../constants/Constants";
 import { getMovies, getNasaBanner } from "../../services/Home";
@@ -5,6 +6,8 @@ import HomeScreen from "./HomeScreen";
 
 // Component that acts as a view model for just functionality of Home screen
 export const Home = () => {
+  const navigation = useNavigation();
+
   const [banner, setBanner] = useState([]);
   const [movies, setMovies] = useState([]);
 
@@ -23,10 +26,15 @@ export const Home = () => {
       })
       .catch((error) => {
         constants?.loaderRef?.hideLoader();
+        console.debug(error)
       });
   };
 
-  return <HomeScreen banner={banner} movies={movies} />;
+  const onPressMovie = (movie) => {
+    navigation.navigate("MovieDetails", {movieId: movie.id});
+  }
+
+  return <HomeScreen banner={banner} movies={movies} onPressMovie={onPressMovie} />;
 };
 
 export default Home;

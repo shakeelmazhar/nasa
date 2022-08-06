@@ -5,5 +5,10 @@ export const helper = {
 	// Tuesday, August 3, 2022 will be the date formate
 	dateFormate: (date) => {
 		return moment(date).format('dddd, MMMM d, YYYY');
+	},
+
+	/// Getting release date for movie
+	getReleaseStatus: (date) => {
+		return moment(date) < moment()
 	}
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
-import PropTypes from "prop-types";
+import PropTypes, { func } from "prop-types";
 import colors from "../../constants/Colors";
 import globalStyles from "../../constants/GlobalStyles";
 import styles from "./Styles";
@@ -8,10 +8,11 @@ import { helper } from "../../constants/Helper";
 import dimensions from "../../constants/Dimensions";
 import { urls } from "../../constants/ApiConstants";
 import { NestedText } from "../../components/common/Common";
+import { constants } from "../../constants/Constants";
 
 // Component as a View for UI only
 const HomeScreen = (props) => {
-  let { banner, movies } = props;
+  let { banner, movies, onPressMovie } = props;
 
   const renderHeader = () => {
     return (
@@ -41,7 +42,7 @@ const HomeScreen = (props) => {
     return (
       <TouchableOpacity
         activeOpacity={0.6}
-        onPress={() => {}}
+        onPress={() => onPressMovie(item)}
         style={{ backgroundColor: colors.white, padding: dimensions.width(2) }}
       >
         <Image
@@ -49,7 +50,7 @@ const HomeScreen = (props) => {
           source={{
             uri: item?.poster_path
               ? `${urls.imgUrl + item?.poster_path}`
-              : "https://nasa-movies.netlify.app/image/gallery.png",
+              : constants.dummyImg,
           }}
         />
         <View style={styles.movieDescriptionView}>
@@ -104,10 +105,11 @@ const HomeScreen = (props) => {
 HomeScreen.propTypes = {
   banner: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   movies: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  onPressMoview: PropTypes.func
 };
 
 HomeScreen.defaultProps = {
-  onPress: () => {},
+  onPressMoview: () => {},
 };
 
 export default HomeScreen;
